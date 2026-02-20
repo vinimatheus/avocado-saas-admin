@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# avocado-saas-admin
 
-## Getting Started
+Painel administrativo global do SaaS (repo separado), conectado ao mesmo banco do app principal.
 
-First, run the development server:
+## Escopo MVP implementado
+
+- Login próprio do admin app (Better Auth + Prisma)
+- Bootstrap do primeiro `MASTER` em `/setup/claim-master`
+- RBAC global `MASTER` e `ADMIN`
+- Troca obrigatória de senha no primeiro login para admins criados por `MASTER`
+- Módulos:
+  - `/admin/empresas`
+  - `/admin/usuarios`
+  - `/admin/planos` (com compatibilidade via redirect de `/admin/pagamentos`)
+  - `/admin/logs`
+  - `/admin/admins` (somente `MASTER`)
+
+## Ambiente
+
+1. Copie variáveis:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Gere o Prisma Client:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm prisma:generate
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Rode em desenvolvimento na porta separada (`3001`):
 
-## Learn More
+```bash
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Abra: [http://localhost:3001](http://localhost:3001)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Segurança de setup e integração
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Configure `ADMIN_BOOTSTRAP_TOKEN` para proteger o claim do primeiro `MASTER`.
+- Configure `ADMIN_STARTER_IMPERSONATION_SECRET` (mínimo 32 caracteres).
+- O valor de `ADMIN_STARTER_IMPERSONATION_SECRET` precisa ser idêntico no `avocado-saas-starter`.
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Produção planejada em subdomínio dedicado:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `https://admin.seudominio.com`
+
+Defina `BETTER_AUTH_URL`, `NEXT_PUBLIC_BETTER_AUTH_URL` e `TRUSTED_ORIGINS` para esse domínio.

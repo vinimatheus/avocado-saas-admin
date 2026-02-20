@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --background: oklch(0.982 0.004 235);
+  --foreground: oklch(0.245 0.014 252);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.245 0.014 252);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.245 0.014 252);
+  --primary: oklch(0.468 0.104 186);
+  --primary-foreground: oklch(0.985 0.008 190);
+  --secondary: oklch(0.946 0.01 247);
+  --secondary-foreground: oklch(0.302 0.014 250);
+  --muted: oklch(0.952 0.008 245);
+  --muted-foreground: oklch(0.545 0.013 246);
+  --accent: oklch(0.904 0.036 188);
+  --accent-foreground: oklch(0.286 0.022 186);
+  --destructive: oklch(0.609 0.208 27);
+  --destructive-foreground: oklch(0.98 0.008 30);
+  --border: oklch(0.875 0.009 247);
+  --input: oklch(0.875 0.009 247);
+  --ring: oklch(0.62 0.085 188);
+  --radius: 0.9rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 0.25rem);
+  --radius-md: calc(var(--radius) - 0.125rem);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.25rem);
+  --font-sans: var(--font-ui);
+  --font-mono: var(--font-code);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans), sans-serif;
+    background-image:
+      radial-gradient(70rem 42rem at -8% -12%, oklch(0.83 0.09 188 / 0.28), transparent 58%),
+      radial-gradient(50rem 34rem at 104% 0%, oklch(0.87 0.07 130 / 0.22), transparent 54%),
+      linear-gradient(180deg, oklch(0.99 0.004 235), oklch(0.972 0.008 245));
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: oklch(0.62 0.1 188 / 0.35);
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100dvh;
 }
