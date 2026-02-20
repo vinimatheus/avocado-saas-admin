@@ -6,8 +6,8 @@ Este projeto concentra operacao, governanca, seguranca e auditoria do ecossistem
 ## Repositorio relacionado (obrigatorio neste contexto)
 
 - SaaS Starter (produto dos clientes): [avocado-saas-starter](https://github.com/vinimatheus/avocado-saas-starter)
-- Caminho local Starter: `/Users/viniciusmatheusmoreira/Desktop/projetos/avocado-saas-starter`
-- Caminho local Admin: `/Users/viniciusmatheusmoreira/Desktop/projetos/avocado-saas-admin`
+- Caminho local Starter (exemplo): `/caminho/para/avocado-saas-starter`
+- Caminho local Admin (exemplo): `/caminho/para/avocado-saas-admin`
 
 ## Contexto multi-repo
 
